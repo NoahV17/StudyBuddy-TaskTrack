@@ -1,6 +1,7 @@
 #include <vector>
 #include <algorithm>
-
+#include <iostream>
+#include "Task.h"
 // Global list of tasks, sorted by priority
 std::vector<Task> tasks;
 

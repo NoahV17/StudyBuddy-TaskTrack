@@ -3,9 +3,10 @@
 
 class SelfOrganizingList {
 public:
-    SelfOrganizingList(const std::string& filename);
+    SelfOrganizingList();
 
-    void addTask(const Task& task);
+    void addTask(Task& task);
+    
     void writeToFile();
 
 private:

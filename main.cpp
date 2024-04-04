@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
     std::string utilityName = argv[1];
 
     if (utilityName == "ADD") {
-        // ADD AN ASSIGNMENT (ADD <due date mmddyy> <title> <priority out of 10>)
+        //ADD AN ASSIGNMENT (ADD <due date mmddyy> <title> <priority out of 10>)
         // This function adds to your list of assignments, it will add to the self organizing list 
 
         if (argc != 5) {
@@ -29,8 +29,8 @@ int main(int argc, char* argv[]) {
         std::string dueDate = argv[2];
         std::string title = argv[3];
         int priority = std::stoi(argv[4]);
-
-        addAssignment(dueDate, title, priority);
+        Task task(dueDate, title, priority);
+        addTask(task);
     } else if (utilityName == "NDD") {
         // NEAREAST DUE DATE (NDD)
         // This will use binary search to look for the assignment with the nearest due date
@@ -55,3 +55,8 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
+
+// finalProject 212 10 302722
+// finalProject 212 10 302722
+// finalProject 212 10 302722
+// finalProject 212 10 302722

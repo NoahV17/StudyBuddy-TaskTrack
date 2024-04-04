@@ -1,16 +1,16 @@
 #include "Task.h"
 
-Task::Task(const std::string& dueDate, const std::string& title, int priority)
+Task::Task(std::string& dueDate, std::string& title, int priority)
     : dueDate(dueDate), title(title), priority(priority) {}
 
-const std::string& Task::getDueDate() const {
+std::string& Task::getDueDate() {
     return dueDate;
 }
 
-const std::string& Task::getTitle() const {
+std::string& Task::getTitle() {
     return title;
 }
 
-int Task::getPriority() const {
+int Task::getPriority() {
     return priority;
 }

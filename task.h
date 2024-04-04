@@ -2,14 +2,14 @@
 
 class Task {
 public:
-    Task(const std::string& dueDate, const std::string& title, int priority);
+    Task::Task(std::string& dueDate, std::string& title, int priority);
 
-    const std::string& getDueDate() const;
-    const std::string& getTitle() const;
-    int getPriority() const;
-    void addAssignment(const Task& task);
+    std::string& getDueDate();
+    std::string& getTitle();
+    int getPriority();
+    void addAssignment(Task& task);
     void nearestDueDate();
-    void showAssignments(const std::string& sortBy);
+    void showAssignments(std::string& sortBy);
 
 private:
     std::string dueDate;
