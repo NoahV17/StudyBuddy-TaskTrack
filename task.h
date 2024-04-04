@@ -2,17 +2,20 @@
 
 class Task {
 public:
-    Task::Task(std::string& dueDate, std::string& title, int priority);
+    Task(int dueDate, std::string& title, int priority);
 
-    std::string& getDueDate();
+    int getDueDate();
     std::string& getTitle();
     int getPriority();
-    void addAssignment(Task& task);
-    void nearestDueDate();
-    void showAssignments(std::string& sortBy);
+    // void addTask(Task task, std::vector<Task>& tasks);
+    void addTask(Task task, std::vector<Task>& tasks, int& taskCounter);
 
 private:
-    std::string dueDate;
+    int dueDate;
     std::string title;
     int priority;
 };
+
+   // void addAssignment(Task& task);
+    // void nearestDueDate();
+    // void showAssignments(std::string& sortBy);

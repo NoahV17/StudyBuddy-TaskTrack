@@ -2,24 +2,17 @@
 #include <algorithm>
 #include <iostream>
 #include "Task.h"
-// Global list of tasks, sorted by priority
-std::vector<Task> tasks;
 
 void nearestDueDate() {
-    if (tasks.empty()) {
-        std::cout << "No tasks available." << std::endl;
-        return;
-    }
+    
+}
 
-    int highestPriority = tasks[0].getPriority();
-
-    // Use binary search to find the first task with the highest priority
-    auto it = std::lower_bound(tasks.begin(), tasks.end(), highestPriority, [](const Task& task, int priority) {
-        return task.getPriority() > priority;
-    });
-
-    // Print all tasks with the highest priority
-    for (; it != tasks.end() && it->getPriority() == highestPriority; ++it) {
-        std::cout << it->getTitle() << " is due on " << it->getDueDate() << " with priority " << it->getPriority() << std::endl;
+// Create function that prints all tasks with the passed in priority,
+// POSSIBLY make temp.txt that will hold a portion of the whole list of tasks.
+void printPriority(std::vector<Task>& tasks, int priority) {
+    for (int i = 0; i < tasks.size(); i++) {
+        if (tasks[i].getPriority() == priority) {
+            std::cout << tasks[i].getDueDate() << " " << tasks[i].getTitle() << " " << tasks[i].getPriority() << std::endl;
+        }
     }
 }
