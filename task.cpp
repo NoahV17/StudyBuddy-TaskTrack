@@ -3,6 +3,8 @@
 
 #include "task.h"
 #include <string>
+#include <vector>
+#include <iostream>
 
 Task::Task(int dueDate, std::string& title, int priority){
     this->dueDate = dueDate;

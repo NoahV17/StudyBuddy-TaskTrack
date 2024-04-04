@@ -3,10 +3,10 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
-#include "task.cpp"
+#include "task.h"
 // #include "SelfOrganizingList.cpp"
 // #include "CombSort.cpp"
-// #include "BinarySearch.cpp"
+#include "binarySearch.h"
 
 int main(int argc, char* argv[]) {
     // Read command line input for
@@ -46,7 +46,7 @@ int main(int argc, char* argv[]) {
     Task task(dueDate, title, priority);
     addTask(task, tasks, taskCounter);
     std::cout << "Total tasks: " << taskCounter << std::endl;
-    
+    printPriority(tasks, 10);
     // if (utilityName == "ADD") {
     //     //ADD AN ASSIGNMENT (ADD <due date mmddyy> <title> <priority out of 10>)
     //     // This function adds to your list of assignments, it will add to the self organizing list 
