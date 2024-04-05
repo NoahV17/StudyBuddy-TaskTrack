@@ -47,6 +47,7 @@ int main(int argc, char* argv[]) {
     addTask(task, tasks, taskCounter);
     std::cout << "Total tasks: " << taskCounter << std::endl;
     printPriority(tasks, 10);
+    //printTasksInMonth(tasks, 2, 2025);
     // if (utilityName == "ADD") {
     //     //ADD AN ASSIGNMENT (ADD <due date mmddyy> <title> <priority out of 10>)
     //     // This function adds to your list of assignments, it will add to the self organizing list 

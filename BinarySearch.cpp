@@ -17,3 +17,17 @@ void printPriority(std::vector<Task>& tasks, int priority) {
         }
     }
 }
+// This is for unsorted, PLAN TO IMPLEMENT REAL BINSEARCH AND BEFORE PERFORMING, COMBSORT
+// could also pass in a bool saying if it is sorted or not in a certian way
+
+//void printTasksInMonth(std::vector<Task>& tasks, int month, int year) {
+//     for (int i = 0; i < tasks.size(); i++) {
+//         int dueDate = tasks[i].getDueDate();
+//         int dueMonth = dueDate / 10000;
+//         int dueYear = dueDate % 10000;
+
+//         if (dueMonth == month && dueYear == year) {
+//             std::cout << tasks[i].getTitle() << " is due on " << dueDate << std::endl;
+//         }
+//     }
+// }
