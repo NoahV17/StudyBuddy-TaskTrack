@@ -4,8 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include "task.h"
-// #include "SelfOrganizingList.cpp"
-// #include "CombSort.cpp"
+#include "combSort.h"
 #include "binarySearch.h"
 
 int main(int argc, char* argv[]) {
@@ -29,7 +28,6 @@ int main(int argc, char* argv[]) {
             if (!(iss >> dueDate >> title >> priority)) {
                 break;
             }
-            
 
             Task task(dueDate, title, priority);
             addTask(task, tasks, taskCounter);
@@ -38,15 +36,24 @@ int main(int argc, char* argv[]) {
     }
 
     // Hard coded tester for add
-    dueDate = 120325;
+    dueDate = 122325;
     title = "finalProject";
     priority = 10;
 
     //std::string utilityName = argv[1];
     Task task(dueDate, title, priority);
     addTask(task, tasks, taskCounter);
-    std::cout << "Total tasks: " << taskCounter << std::endl;
+    std::cout << "Total amount of tasks: " << taskCounter << std::endl;
+    std::cout << std::endl;
+
     printPriority(tasks, 10);
+    std::cout << std::endl;
+    toString(tasks);
+
+    CombSort cs(tasks);
+    toString(cs.sort_by_priority(tasks));
+    toString(cs.sort_by_date(tasks));
+    
     //printTasksInMonth(tasks, 2, 2025);
     // if (utilityName == "ADD") {
     //     //ADD AN ASSIGNMENT (ADD <due date mmddyy> <title> <priority out of 10>)
@@ -78,16 +85,15 @@ int main(int argc, char* argv[]) {
 
     //     std::string sortBy = argv[2];
 
-    //     showAssignments(sortBy);
-    // } else {
-    //     std::cerr << "Error: Unknown utility name." << std::endl;
-    //     return 1;
-    // }
+
+
+    //updateFile, part of task class
+    //first sort by due date, then loop through the vector from 
+    //i = 0 to i = tasks.size(), and output in the format
+    //
+    //102823 Midterm 3 \n
+    //aka
+    //task.getDueDate << " " << task.getTitle << " " << task.getPriority
 
     return 0;
 }
-
-// finalProject 212 10 302722
-// finalProject 212 10 302722
-// finalProject 212 10 302722
-// finalProject 212 10 302722

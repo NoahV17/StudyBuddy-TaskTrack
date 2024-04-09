@@ -12,8 +12,10 @@
 void printPriority(std::vector<Task>& tasks, int priority) {
     std::cout << "The following are of priority level " << priority << std::endl; 
     for (int i = 0; i < tasks.size(); i++) {
+        int num_with_priority = 0;
         if (tasks[i].getPriority() == priority) {
-            std::cout << tasks[i].getTitle() << " is due on " << tasks[i].getDueDate() << std::endl;
+            num_with_priority++;
+            std::cout << num_with_priority << ". " << tasks[i].getTitle() << ": due on " << tasks[i].getDueDate() << std::endl;
         }
     }
 }

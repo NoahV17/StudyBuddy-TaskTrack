@@ -15,12 +15,19 @@ Task::Task(int dueDate, std::string& title, int priority){
 void addTask(Task task, std::vector<Task>& tasks, int& taskCounter) {
     tasks.push_back(task);
     taskCounter++;
-    std::cout << task.getDueDate() << " " << task.getTitle() << " " << task.getPriority() << std::endl;
+    std::cout << "Added -> " << task.getTitle() << ", which is due on " << task.print_due_date() << std::endl;
     // Make a new function, and call it , to output the new vector to the file, and save the file.
 }
 
 int Task::getDueDate() {
     return dueDate;
+}
+
+std::string Task::print_due_date() {
+    //Parse due date int
+    std::string str;
+    str += std::to_string(dueDate / 10000) + "/" + std::to_string(dueDate / 100 % 100) + "/" + std::to_string(dueDate % 100);
+    return str;
 }
 
 std::string& Task::getTitle() {
@@ -29,4 +36,13 @@ std::string& Task::getTitle() {
 
 int Task::getPriority() {
     return priority;
+}
+
+void toString(std::vector<Task> tasks) {
+    int counter = 0;
+    std::cout << "The following is a list of all stored tasks..." << std::endl;
+    for (Task& task : tasks) {
+        counter++;
+        std::cout << counter << ". " << task.print_due_date() << " " << task.getTitle() << " " << task.getPriority() << std::endl;
+    }
 }

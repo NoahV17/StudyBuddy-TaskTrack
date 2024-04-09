@@ -10,7 +10,7 @@ public:
     int getDueDate();
     std::string& getTitle();
     int getPriority();
-    // void addTask(Task task, std::vector<Task>& tasks);
+    std::string print_due_date();
     
 private:
     int dueDate;
@@ -19,6 +19,7 @@ private:
 };
 
 void addTask(Task task, std::vector<Task>& tasks, int& taskCounter);
+void toString(std::vector<Task> tasks);
 
 #endif // TASK_H
 
