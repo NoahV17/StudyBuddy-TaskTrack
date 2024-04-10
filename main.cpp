@@ -50,9 +50,12 @@ int main(int argc, char* argv[]) {
     std::cout << std::endl;
     toString(tasks);
 
-    CombSort cs(tasks);
-    toString(cs.sort_by_priority(tasks));
-    toString(cs.sort_by_date(tasks));
+    //Initialize combSort object
+    CombSort combsort(tasks);
+
+    //Soft a certain way, then pass that vector as parameter to print out
+    toString(combsort.sort_by_priority(tasks));
+    toString(combsort.sort_by_date(tasks));
     
     //printTasksInMonth(tasks, 2, 2025);
     // if (utilityName == "ADD") {
