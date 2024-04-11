@@ -13,6 +13,7 @@ Task::Task(int dueDate, std::string& title, int priority){
 }
 
 void addTask(Task task, std::vector<Task>& tasks, int& taskCounter) {
+    
     tasks.push_back(task);
     taskCounter++;
     std::cout << "Added -> " << task.getTitle() << ", which is due on " << task.print_due_date() << std::endl;

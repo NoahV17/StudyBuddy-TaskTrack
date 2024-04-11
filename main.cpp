@@ -17,6 +17,7 @@ int main(int argc, char* argv[]) {
     int taskCounter = 0;
     int dueDate, priority;
     
+    
     //Load list from file
     if (file.is_open()) {
         std::string line;
@@ -34,6 +35,11 @@ int main(int argc, char* argv[]) {
         }
         file.close();
     }
+
+    //Sorts list by date if not already sorted
+    CombSort combsort(tasks);
+    tasks = combsort.sort_by_date(tasks);
+    bool sorted_by_date = true;
 
     // Hard coded tester for add
     dueDate = 122325;
