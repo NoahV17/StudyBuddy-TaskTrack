@@ -5,7 +5,7 @@
 #include <sstream>
 #include "task.h"
 #include "combSort.h"
-#include "binarySearch.h"
+#include "ternarySearch.h"
 
 int main(int argc, char* argv[]) {
     // Read command line input for

@@ -3,6 +3,7 @@
 #include <algorithm>
 #include "combSort.h"
 #include "task.h"
+#include "ternarySearch.h"
 
 CombSort::CombSort(std::vector<Task>& tasks) : tasks(tasks), shrink(1.3), sorted(false), gap(0) {}
 

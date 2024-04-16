@@ -20,6 +20,10 @@ void addTask(Task task, std::vector<Task>& tasks, int& taskCounter) {
     // Make a new function, and call it , to output the new vector to the file, and save the file.
 }
 
+void removeTask(std::vector<Task>& tasks, int index) {
+    tasks.erase(tasks.begin() + index - 1);
+}
+
 int Task::getDueDate() {
     return dueDate;
 }
