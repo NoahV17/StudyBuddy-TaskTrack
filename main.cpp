@@ -40,68 +40,85 @@ int main(int argc, char* argv[]) {
     CombSort combsort(tasks);
     tasks = combsort.sort_by_date(tasks);
     bool sorted_by_date = true;
-
-    // Hard coded tester for add
-    dueDate = 122325;
-    title = "finalProject";
-    priority = 10;
-
-    //std::string utilityName = argv[1];
-    Task task(dueDate, title, priority);
-    addTask(task, tasks, taskCounter);
-    std::cout << "Total amount of tasks: " << taskCounter << std::endl;
-    std::cout << std::endl;
-
-    printPriority(tasks, 10);
-    std::cout << std::endl;
-    toString(tasks);
-
-    //Initialize combSort object
-    CombSort combsort(tasks);
-
-    //Soft a certain way, then pass that vector as parameter to print out
-    toString(combsort.sort_by_priority(tasks));
-    toString(combsort.sort_by_date(tasks));
     
-    //printTasksInMonth(tasks, 2, 2025);
-    // if (utilityName == "ADD") {
-    //     //ADD AN ASSIGNMENT (ADD <due date mmddyy> <title> <priority out of 10>)
-    //     // This function adds to your list of assignments, it will add to the self organizing list 
+    std::cout << "Welcome to the Task Manager!" << std::endl;
+    std::cout << "Total amount of current tasks: " << taskCounter << std::endl;
+    std::cout << std::endl;
 
-    //     if (argc != 5) {
-    //         std::cerr << "Error: Invalid parameters for ADD." << std::endl;
-    //         return 1;
-    //     }
+    std::string utilityName = argv[1];
+    
+    printTasksInMonth(tasks, 2, 2025);
+    if (utilityName == "ADD") {
+        //ADD AN ASSIGNMENT (ADD <due date mmddyy> <title> <priority out of 10>)
+        // This function adds to your list of assignments, it will add to the self organizing list 
 
-    //     std::string dueDate = argv[2];
-    //     std::string title = argv[3];
-    //     int priority = std::stoi(argv[4]);
-    //     Task task(dueDate, title, priority);
-    //     addTask(task);
-    // } else if (utilityName == "NDD") {
-    //     // NEAREAST DUE DATE (NDD)
-    //     // This will use binary search to look for the assignment with the nearest due date
+        if (argc != 5) {
+            std::cerr << "Error: Invalid parameters for ADD." << std::endl;
+            return 1;
+        }
 
-    //     nearestDueDate();
-    // } else if (utilityName == "SHOW") {
-    //     // OUTPUT (SHOW <what you want to sort by, due date (dd), priority (pr)>)
-    //     // This will print your whole list of due assignments with their respective info
-
-    //     if (argc != 3) {
-    //         std::cerr << "Error: Invalid parameters for SHOW." << std::endl;
-    //         return 1;
-    //     }
-
-    //     std::string sortBy = argv[2];
+        int dueDate = std::stoi(argv[2]);
+        std::string title = argv[3];
+        int priority = std::stoi(argv[4]);
+        Task task(dueDate, title, priority);
+        addTask(task, tasks, taskCounter);
 
 
+    } else if (utilityName == "DIM") {
+        // NEAREAST DUE DATE (NDD)
+        // This will use binary search to look for the assignment with the nearest due date
+        //nearestDueDate();
+    } else if (utilityName == "PRINT") {
+        // OUTPUT (PRINT <what you want to print by, due date is default, if priority then use (pr)>)
+        // This will print your whole list of due assignments with their respective info
+        std::string sortBy = "dd";
+        if (argc >= 3) {
+            sortBy = argv[2];
+        }
+        
+        if (sortBy == "pr") {
+            toString(combsort.sort_by_priority(tasks));
+        } else if (sortBy == "dd"){
+            toString(combsort.sort_by_date(tasks));
+        }
+    } else if (utilityName == "DEL") {
+        // DELETE (DEL <index of assignment>)
+        // This will delete the assignment at the index you specify
+        if (argc != 3) {
+            std::cerr << "Error: Invalid parameters for DEL." << std::endl;
+            return 1;
+        }
 
-    //updateFile, part of task class
-    //first sort by due date, then loop through the vector from 
-    //i = 0 to i = tasks.size(), and output in the format
-    //
-    //102823 Midterm 3 \n
-    //aka
+        int index = std::stoi(argv[2]);
+        removeTask(tasks, index);
+    } else if (utilityName == "SORT") {
+        // SORT (SORT <how you want to sort, due date (dd), priority (pr)>)
+        // This will sort your list of assignments by due date or priority
+
+        if (argc != 3) {
+            std::cerr << "Error: Invalid parameters for SORT." << std::endl;
+            return 1;
+        }
+
+        std::string sortBy = argv[2];
+        if (sortBy == "pr") {
+            tasks = combsort.sort_by_priority(tasks);
+        } else if (sortBy == "dd"){
+            tasks = combsort.sort_by_date(tasks);
+        }
+
+    } else {
+        std::cerr << "Error: Invalid utility name." << std::endl;
+        return 1;
+    }
+
+
+    // updateFile, part of task class
+    // first sort by due date, then loop through the vector from 
+    // i = 0 to i = tasks.size(), and output in the format
+    
+    // 102823 Midterm 3 \n
+    // aka
     //task.getDueDate << " " << task.getTitle << " " << task.getPriority
 
     return 0;

@@ -20,6 +20,8 @@ private:
 
 void addTask(Task task, std::vector<Task>& tasks, int& taskCounter);
 void toString(std::vector<Task> tasks);
+void toFile(std::vector<Task> tasks);
+void removeTask(std::vector<Task>& tasks, int index);
 
 #endif // TASK_H
 

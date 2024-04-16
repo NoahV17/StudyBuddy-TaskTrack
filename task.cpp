@@ -51,3 +51,12 @@ void toString(std::vector<Task> tasks) {
         std::cout << counter << ". " << task.print_due_date() << " " << task.getTitle() << " " << task.getPriority() << std::endl;
     }
 }
+
+void toFile(std::vector<Task> tasks) {
+    int counter = 0;
+    std::cout << "The following is a list of all stored tasks..." << std::endl;
+    for (Task& task : tasks) {
+        counter++;
+        std::cout << counter << ". " << task.print_due_date() << " " << task.getTitle() << " " << task.getPriority() << std::endl;
+    }
+}
