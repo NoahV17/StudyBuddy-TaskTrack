@@ -6,7 +6,13 @@
 #include "task.h"
 #include "combSort.h"
 #include "ternarySearch.h"
+//./main <utility-name> <potential-parameters>
 
+// different utilities + parameters
+//ADD <due date mmddyy> <class name task is for> <title> <priority out of 10>
+//PRINT <what you want to print by, due date is default, if priority then use (pr)>
+//DEL <index of assignment>
+//SORT <how you want to sort, due date (dd), priority (pr)>
 int main(int argc, char* argv[]) {
     // Read command line input for
     // ./main <utility-name> <potential-parameters>
@@ -23,16 +29,18 @@ int main(int argc, char* argv[]) {
         std::string line;
         while (std::getline(file, line)) {
             std::istringstream iss(line);
-            int dueDate;
-            std::string title;
-            int priority;
-            if (!(iss >> dueDate >> title >> priority)) {
+            std::string dueDateStr, classStr, title, priorityStr;
+            if (!std::getline(iss, dueDateStr, ',') || !std::getline(iss, classStr, ',') || !std::getline(iss, title, ',') || !std::getline(iss, priorityStr, ',')) {
                 break;
             }
 
-            Task task(dueDate, title, priority);
+            int priority = std::stoi(priorityStr);
+
+            Task task(dueDateStr, classStr, title, priority);
             addTask(task, tasks, taskCounter);
         }
+        std::cout << "Sucessfully loaded tasks from file." << std::endl;
+        std::cout << std::endl;
         file.close();
     }
 
@@ -43,33 +51,43 @@ int main(int argc, char* argv[]) {
     
     std::cout << "Welcome to the Task Manager!" << std::endl;
     std::cout << "Total amount of current tasks: " << taskCounter << std::endl;
+    std::cout << "Current working commands:" << std::endl;
+    std::cout << "ADD <Due date> <Class the task is for, or other grouping identifier> <Title or description> <priority 0-10>" << std::endl;
+    std::cout << "PRINT <sorted by 'dd' or 'pr'>" << std::endl;
+    std::cout << "DEL <index to delete>, starts at 1 to match how tasks are printed" << std::endl;
+    std::cout << "SORT <sorted by 'dd' or 'pr'>" << std::endl;
     std::cout << std::endl;
 
     std::string utilityName = argv[1];
     
-    printTasksInMonth(tasks, 2, 2025);
+    //printTasksInMonth(tasks, 2, 2025);
     if (utilityName == "ADD") {
         //ADD AN ASSIGNMENT (ADD <due date mmddyy> <title> <priority out of 10>)
         // This function adds to your list of assignments, it will add to the self organizing list 
 
-        if (argc != 5) {
+        if (argc != 6) {
             std::cerr << "Error: Invalid parameters for ADD." << std::endl;
             return 1;
         }
 
-        int dueDate = std::stoi(argv[2]);
-        std::string title = argv[3];
-        int priority = std::stoi(argv[4]);
-        Task task(dueDate, title, priority);
+        std::string dueDate = argv[2];
+        std::cout << "Due date entered correctly " << dueDate << std::endl;
+        std::string classNum = argv[3];
+        std::cout << "Class entered correctly " << classNum << std::endl;
+        std::string title = argv[4];
+        std::cout << "Title entered correctly " << title << std::endl;
+        int priority = std::stoi(argv[5]);
+        std::cout << "Priority entered correctly " << priority << std::endl;
+        Task task(dueDate, classNum, title, priority);
         addTask(task, tasks, taskCounter);
 
 
     } else if (utilityName == "DIM") {
         // NEAREAST DUE DATE (NDD)
-        // This will use binary search to look for the assignment with the nearest due date
-        //nearestDueDate();
+        // This will use ternary search to look for the assignment with the nearest due date
+        // nearestDueDate();
     } else if (utilityName == "PRINT") {
-        // OUTPUT (PRINT <what you want to print by, due date is default, if priority then use (pr)>)
+        // PRINT (PRINT <what you want to print by, due date is default, if priority then use (pr)>)
         // This will print your whole list of due assignments with their respective info
         std::string sortBy = "dd";
         if (argc >= 3) {
@@ -106,12 +124,13 @@ int main(int argc, char* argv[]) {
         } else if (sortBy == "dd"){
             tasks = combsort.sort_by_date(tasks);
         }
-
+        std::cout << "Sorted by " << sortBy << std::endl;
     } else {
         std::cerr << "Error: Invalid utility name." << std::endl;
         return 1;
     }
-
+    
+    toFile(tasks, false);
 
     // updateFile, part of task class
     // first sort by due date, then loop through the vector from 

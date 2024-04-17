@@ -36,8 +36,8 @@ std::vector<Task> CombSort::sort_by_date(std::vector<Task>& tasks) {
             sorted = true;
         }
         for (int i = 0; i + gap < tasks.size(); i++) {
-            int date1 = tasks[i].getDueDate();
-            int date2 = tasks[i + gap].getDueDate();
+            int date1 = tasks[i].getDueDateInt();
+            int date2 = tasks[i + gap].getDueDateInt();
 
             // Convert dates to yyyymmdd format
             std::string convertedDate1 = "20" + std::to_string(date1 % 100) + std::to_string(date1 / 100 % 100) + std::to_string(date1 / 10000);

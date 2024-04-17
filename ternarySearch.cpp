@@ -24,9 +24,9 @@ void printTasksInMonth(std::vector<Task>& tasks, int month, int year) {
     while (right - left > 2) {
         int mid1 = left + (right - left) / 3;
         int mid2 = right - (right - left) / 3;
-        if (tasks[mid1].getDueDate() < target) {
+        if (tasks[mid1].getDueDateInt() < target) {
             left = mid1 + 1;
-        } else if (tasks[mid2].getDueDate() > target) {
+        } else if (tasks[mid2].getDueDateInt() > target) {
             right = mid2 - 1;
         } else {
             left = mid1;
@@ -36,8 +36,8 @@ void printTasksInMonth(std::vector<Task>& tasks, int month, int year) {
 
     // If the first task in the target month and year is found, print all tasks in that month and year
     for (int i = left; i <= right; i++) {
-        if (tasks[i].getDueDate() / 10000 == month && tasks[i].getDueDate() % 10000 == year) {
-            for (int j = i; j < tasks.size() && tasks[j].getDueDate() / 10000 == month && tasks[j].getDueDate() % 10000 == year; j++) {
+        if (tasks[i].getDueDateInt() / 10000 == month && tasks[i].getDueDateInt() % 10000 == year) {
+            for (int j = i; j < tasks.size() && tasks[j].getDueDateInt() / 10000 == month && tasks[j].getDueDateInt() % 10000 == year; j++) {
                 std::cout << tasks[j].getTitle() << " is due on " << tasks[j].getDueDate() << std::endl;
             }
             return;
