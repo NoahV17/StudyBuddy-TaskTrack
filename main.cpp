@@ -82,7 +82,7 @@ int main(int argc, char* argv[]) {
         addTask(task, tasks, taskCounter);
 
 
-    } else if (utilityName == "DIM") {
+    } else if (utilityName == "ONDAY") {
         // NEAREAST DUE DATE (NDD)
         // This will use ternary search to look for the assignment with the nearest due date
         // nearestDueDate();
