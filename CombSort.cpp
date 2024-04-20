@@ -46,6 +46,11 @@ std::vector<Task> CombSort::sort_by_date(std::vector<Task>& tasks) {
             if (convertedDate1 > convertedDate2) {
                 std::swap(tasks[i], tasks[i + gap]);
                 sorted = false;
+            } else if (convertedDate1 == convertedDate2) {
+                if (tasks[i].getPriority() < tasks[i + gap].getPriority()) {
+                    std::swap(tasks[i], tasks[i + gap]);
+                    sorted = false;
+                }
             }
         }
     }
