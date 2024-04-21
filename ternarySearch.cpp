@@ -45,3 +45,23 @@ void printTasksInMonth(std::vector<Task>& tasks, int month, int year) {
     }
     std::cout << "No tasks due in " << month << "/" << year << std::endl;
 }
+
+std::vector<Task> onDay(std::vector<Task> tasks, std::string date) {
+    int left = 0;
+    int right = tasks.size() - 1;
+    std::vector<Task> result;
+    std::cout << "on day is running" << std::endl;
+    // Convert the date to an integer
+    date.erase(0, date.find_first_not_of('0'));
+    int date1 = std::stoi(date);
+
+    // Collect all tasks with the same due date
+    for (int i = 0; i < tasks.size(); i++) {
+        if (std::stoi(tasks[i].getDueDate()) == date1) {
+            std::cout << "Task due on " << date << ": " << tasks[i].getTitle() << std::endl;
+            result.push_back(tasks[i]);
+        }
+    }
+
+    return result;
+}

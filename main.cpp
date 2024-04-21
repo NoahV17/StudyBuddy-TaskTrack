@@ -53,6 +53,7 @@ int main(int argc, char* argv[]) {
     std::cout << "Total amount of current tasks: " << taskCounter << std::endl;
     std::cout << "Current working commands:" << std::endl;
     std::cout << "ADD <Due date> <Class the task is for, or other grouping identifier> <Title or description> <priority 0-10>" << std::endl;
+    std::cout << "ONDAY <date mmddyy>" << std::endl;
     std::cout << "PRINT <sorted by 'dd' or 'pr'>" << std::endl;
     std::cout << "DEL <index to delete>, starts at 1 to match how tasks are printed" << std::endl;
     std::cout << "SORT <sorted by 'dd' or 'pr'>" << std::endl;
@@ -83,9 +84,10 @@ int main(int argc, char* argv[]) {
 
 
     } else if (utilityName == "ONDAY") {
-        // NEAREAST DUE DATE (NDD)
-        // This will use ternary search to look for the assignment with the nearest due date
-        // nearestDueDate();
+        // This will use ternary search to look for all the assignments with the given due date
+        std::vector<Task> tempTasks;
+        tempTasks = onDay(tasks, argv[2]);
+        toFile(combsort.sort_by_priority(tempTasks), true);
     } else if (utilityName == "PRINT") {
         // PRINT (PRINT <what you want to print by, due date is default, if priority then use (pr)>)
         // This will print your whole list of due assignments with their respective info
